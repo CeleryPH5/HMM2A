@@ -416,21 +416,20 @@ int take1SampleFrom1PrSpace(double prTable[], int sizeOfTable) {
 //	store these probabilities in prTable.
 /************************************************************************/
 void getKeyboardProbabilityTable(char charToType, double prTable[]) {
-	int currentState = 0;
 	int tableSize = 26;
 	char map[] = "abcdefghijklmnopqrstuvwxyz";
-	double scale = getScaleFactor(26);
+	
+	double totalProb = 0;
 
 	for (int i = 0; i < tableSize; i++) {
-		if (charToType == map[i]) {
-			currentState = i;
-		}
+		prTable[i] = prCharGivenCharOfState(map[i], charToType);
+		totalProb += prTable[i];
 	}
-	for (int i = 0; i < 26; i++) {
-		prTable[i] = prCharGivenCharOfState(map[i], charToType, scale);
+
+	for (int i = 0; i < tableSize; i++) {
+		prTable[i] /= totalProb;
 	}
 }
-
 
 /************************************************************************/
 //Simulate the keyboard model:
