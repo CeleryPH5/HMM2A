@@ -370,37 +370,62 @@ void getPrTableForPossibleNextStates
 //	according to the probabilities of sizeOfTable elements;
 //Return the index of the non-deterministically sampled element.
 /************************************************************************/
+
+
+
 int take1SampleFrom1PrSpace(double prTable[], int sizeOfTable) {
-	int idx;
-	double prSum = 0;
-	for (idx = 0; idx < sizeOfTable; idx++)
-		prSum += prTable[idx];
+    // example probability table: {0.8, 0.1, 0.1} [HIS] (Numbers were picked arbitrarily)
+    // 0.8 represents the probability of selecting the first character,
+    // 0.1 for the second, and 0.1 for the third. 
+    
+    int idx;
+    double prSum = 0;
+    
+    // Step 1: Sum all the probabilities to ensure they add up to ~1
+    for (idx = 0; idx < sizeOfTable; idx++) {
+        prSum += prTable[idx];
+    }
+    
+    // Check if the sum of the probabilities is close to 1
+    if (prSum < 0.999 || prSum > 1.001) {
+        cout << "Error in probability sampling" << endl
+             << "Sum of probabilities: " << prSum << endl;
+    }
 
-	if (prSum < 0.999 || prSum > 1.001)
-		cout << "Error in probability sampling" << endl
-		<< "Sum of probabilities: " << prSum << endl;
+    // Step 2: Create cumulative probability intervals
+    // This defines the ranges where each element can be selected
+    double prAccum = 0;
+    double* prIntervals = new double[sizeOfTable];
+    
+    for (idx = 0; idx < sizeOfTable; idx++) {
+        prAccum += prTable[idx];  // Accumulate probabilities
+        prIntervals[idx] = prAccum;  // Store cumulative sum
+    }
+    
+    // At this point:
+    // prIntervals[0] = [0,0.8]
+    // prIntervals[1] = [0.8,0.9]
+    // prIntervals[2] = [0.9,1.0]
+    
+    // Step 3: Generate a random number between 0 and 1
+    int randVal = rand() % 1001;  // Random integer between 0 and 1000
+    double tempVal = randVal / 1000.0;  // Convert to a float between 0.0 and 1.0
+    
+    // Step 4: Check which interval this random number falls into
+	// So if it is like 0.76 then it will fall in the range of prIntervals[0] which is [0,0.8]
+    bool taken = false;
+    for (idx = 0; idx < sizeOfTable && !taken; idx++) {
+        // If the random value falls within the current interval
+        if (tempVal <= prIntervals[idx]) {
+            delete[] prIntervals;
+            return idx;  // Return the index of the selected item
+        }
+    }
 
-	double prAccum = 0;
-	double* prIntervals = new double[sizeOfTable];
-	for (idx = 0; idx < sizeOfTable; idx++) {
-		prAccum += prTable[idx];
-		prIntervals[idx] = prAccum;
-	}
-
-	int randVal = rand() % 1001;
-	double tempVal = randVal / 1000.0;
-
-	bool taken = false;
-	for (idx = 0; idx < sizeOfTable && !taken; idx++) {
-		if (tempVal <= prIntervals[idx]) {
-			delete[] prIntervals;
-			return idx;
-		}
-	}
-	delete[] prIntervals;
-	return sizeOfTable - 1;
+    // Edge case: If no match found, return the last index
+    delete[] prIntervals;
+    return sizeOfTable - 1;
 }
-
 
 
 
@@ -416,6 +441,7 @@ int take1SampleFrom1PrSpace(double prTable[], int sizeOfTable) {
 //	store these probabilities in prTable.
 /************************************************************************/
 void getKeyboardProbabilityTable(char charToType, double prTable[]) {
+	// Suppose we want to type in c
 	int tableSize = 26;
 	char map[] = "abcdefghijklmnopqrstuvwxyz";
 	
@@ -425,10 +451,34 @@ void getKeyboardProbabilityTable(char charToType, double prTable[]) {
 		prTable[i] = prCharGivenCharOfState(map[i], charToType);
 		totalProb += prTable[i];
 	}
+	/*
+		This creates the probability of typing a character (ie. G), given you were trying to type another character (ie. C)
+ 		If we only have a,b,c and the target is 'c' then it may look like this
+   		- prCharGivenCharOfState('a', 'c') → 0.2
+		- prCharGivenCharOfState('b', 'c') → 0.3
+		- prCharGivenCharOfState('c', 'c') → 0.5
+ 	
+		Which symbolizes 
+  		- prTable[0] = 0.2 (probability of mistyping 'a' when trying to type 'c')
+		- prTable[1] = 0.3 (probability of mistyping 'b' when trying to type 'c')
+		- prTable[2] = 0.5 (probability of correctly typing 'c')
+  
+  	*/
 
 	for (int i = 0; i < tableSize; i++) {
 		prTable[i] /= totalProb;
 	}
+
+	//This function just normalizes it to be == 1, there would be no change in our baby example of 
+	/*
+
+  		- prTable[0] = 0.2 (probability of mistyping 'a' when trying to type 'c')
+		- prTable[1] = 0.3 (probability of mistyping 'b' when trying to type 'c')
+		- prTable[2] = 0.5 (probability of correctly typing 'c')
+
+  		Since it sums to 1, but in the case that it doesn't, we need to adjust it.
+ 
+ 	*/
 }
 
 /************************************************************************/
@@ -439,7 +489,9 @@ void getKeyboardProbabilityTable(char charToType, double prTable[]) {
 char typeOneChar(char charToType) {
 	char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 	double prTable[26];
+	// This gets the probability table from the second function
 	getKeyboardProbabilityTable(charToType, prTable);
+	// This returns a random letter typed from the probability table
 	return alphabet[take1SampleFrom1PrSpace(prTable, 26)];
 }
 
