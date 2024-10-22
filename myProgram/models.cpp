@@ -506,7 +506,52 @@ char typeOneChar(char charToType) {
 /************************************************************************/
 void typeOneWord(char word[], char output[], bool traceON, int maxOutput)
 { 
-	//Write your own code
+	int wordLen = strlen(word);
+	int currentState = 0; 
+	int outputIndex = 0;
+	output[outputIndex++] = '\0'; // Null-terminate the output array
 
+	// Transition probability table
+	double* transitionPrTable = new double[wordLen + 1];
+
+	while (currentState < wordLen && outputIndex < maxOutput - 1) {
+		getPrTableForPossibleNextStates(transitionPrTable, wordLen + 1, currentState);
+
+		// Simulate the next state based on transition probabilities
+		double randVal = (double)rand() / RAND_MAX;
+		double cumulative = 0.0;
+		int nextState = currentState;
+
+		for (int i = 0; i <= wordLen; i++) {
+			cumulative += transitionPrTable[i];
+			if (randVal <= cumulative) {
+				nextState = i;
+				break;
+			}
+		}
+
+		if (nextState == currentState) { //looper to go through each character
+			continue;
+		}
+		else if (nextState == wordLen) {
+			break;
+		}
+		else {
+			output[outputIndex++] = word[nextState];
+			if (traceON) {
+				cout << "State " << currentState << " to state " << nextState
+					<< " (typed '" << word[nextState] << "')" << endl;
+			}
+			currentState = nextState;
+		}
+	}
+
+	output[outputIndex] = '\0'; // Null-terminate the output array
+
+	if (traceON) {
+		cout << "Final output: " << output << endl;
+	}
+
+	delete[] transitionPrTable;
 }// end of the function
 /*******************************************************************/

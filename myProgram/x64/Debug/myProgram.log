@@ -1,0 +1,3 @@
+﻿  models.cpp
+C:\Users\minic\OneDrive\Documents\GitHub\HMM2A\myProgram\models.cpp(509,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  myProgram.vcxproj -> C:\Users\minic\OneDrive\Documents\GitHub\HMM2A\x64\Debug\myProgram.exe

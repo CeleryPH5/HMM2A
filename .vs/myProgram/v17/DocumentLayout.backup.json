@@ -1,0 +1,73 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\minic\\OneDrive\\Documents\\GitHub\\HMM2A\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6C2DB053-578D-4D16-B23F-2180B4E711C4}|myProgram\\myProgram.vcxproj|C:\\Users\\minic\\OneDrive\\Documents\\GitHub\\HMM2A\\myProgram\\models.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6C2DB053-578D-4D16-B23F-2180B4E711C4}|myProgram\\myProgram.vcxproj|solutionrelative:myProgram\\models.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C2DB053-578D-4D16-B23F-2180B4E711C4}|myProgram\\myProgram.vcxproj|C:\\Users\\minic\\OneDrive\\Documents\\GitHub\\HMM2A\\myProgram\\demo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6C2DB053-578D-4D16-B23F-2180B4E711C4}|myProgram\\myProgram.vcxproj|solutionrelative:myProgram\\demo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\shieuhongl\\Desktop\\CSCI 106 2023\\Demo of Concepts\\sampleProject\\myProgram\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "models.cpp",
+              "DocumentMoniker": "C:\\Users\\minic\\OneDrive\\Documents\\GitHub\\HMM2A\\myProgram\\models.cpp",
+              "RelativeDocumentMoniker": "myProgram\\models.cpp",
+              "ToolTip": "C:\\Users\\minic\\OneDrive\\Documents\\GitHub\\HMM2A\\myProgram\\models.cpp",
+              "RelativeToolTip": "myProgram\\models.cpp",
+              "ViewState": "AgIAAPQBAAAAAAAAAAAgwB0CAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-22T03:17:03.452Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "demo.cpp",
+              "DocumentMoniker": "C:\\Users\\minic\\OneDrive\\Documents\\GitHub\\HMM2A\\myProgram\\demo.cpp",
+              "RelativeDocumentMoniker": "myProgram\\demo.cpp",
+              "ToolTip": "C:\\Users\\minic\\OneDrive\\Documents\\GitHub\\HMM2A\\myProgram\\demo.cpp",
+              "RelativeToolTip": "myProgram\\demo.cpp",
+              "ViewState": "AgIAAGYBAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-22T03:17:03.536Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\shieuhongl\\Desktop\\CSCI 106 2023\\Demo of Concepts\\sampleProject\\myProgram\\main.cpp",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\shieuhongl\\Desktop\\CSCI 106 2023\\Demo of Concepts\\sampleProject\\myProgram\\main.cpp",
+              "ToolTip": "C:\\Users\\shieuhongl\\Desktop\\CSCI 106 2023\\Demo of Concepts\\sampleProject\\myProgram\\main.cpp",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\shieuhongl\\Desktop\\CSCI 106 2023\\Demo of Concepts\\sampleProject\\myProgram\\main.cpp",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAUAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2023-09-05T19:22:54.137Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
